@@ -1,13 +1,13 @@
-# $Id: Charcount.pm,v 0.02 2004/01/15 21:55:37 sts Exp $
+# $Id: Charcount.pm,v 0.03 2004/01/15 21:55:37 sts Exp $
 
 package String::Charcount;
 
 use 5.006;
-use base qw(Exporter);
+use base(Exporter);
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 our @EXPORT_OK = qw(count percentage);
 our %EXPORT_TAGS = (  all  =>    [ @EXPORT_OK ]

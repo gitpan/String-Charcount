@@ -1,7 +1,7 @@
 String::Charcount
 =================
 
-Extension that counts the occurence of characters within a string.
+Count the occurence of characters within a string.
 
 INSTALLATION
 
