@@ -1,0 +1,29 @@
+String::Charcount
+=================
+
+Extension that counts the occurence of characters within a string.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+   
+SCRIPTS
+
+bin/count.pl
+
+Interface to String::Charcount that contains 
+predefined options and outputs counted characters.
+
+LICENSE
+
+This program is free software;
+you may redistribute it and/or modify it under the same terms as Perl itself.
+
+AUTHOR
+
+Steven Schubiger

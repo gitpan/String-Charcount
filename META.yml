@@ -1,0 +1,10 @@
+--- #YAML:1.0
+module_name: String-Charcount
+dist_version_from: lib/String/Charcount.pm
+installdirs: site
+requires:
+    Exporter: 0 
+distribution_type: module
+license: perl
+dist_abstract: count the occurence of characters within a string.
+dist_author: Steven Schubiger
