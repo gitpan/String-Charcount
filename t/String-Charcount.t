@@ -5,7 +5,7 @@ use warnings;
 
 use Test::More tests => 4;
 
-use String::Charcount q/:all/;
+use String::Charcount qw(count percentage);
 
 my ($string, $count, $percentage);
 
