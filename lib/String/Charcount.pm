@@ -1,6 +1,6 @@
 package String::Charcount;
 
-$VERSION = '0.09';
+$VERSION = '0.11';
 @subs = qw(count count_unique percentage);
 @EXPORT_OK = @subs;
 %EXPORT_TAGS = (all => [ @subs ]);
