@@ -1,22 +1,16 @@
-# $Id: Charcount.pm,v 0.01 2004/01/15 21:55:37 sts Exp $
+# $Id: Charcount.pm,v 0.02 2004/01/15 21:55:37 sts Exp $
 
 package String::Charcount;
 
 use 5.006;
+use base qw(Exporter);
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
-use Exporter;
-use base qw(Exporter);
-
-our (@EXPORT_OK, %EXPORT_TAGS, @subs);
-
-@subs = qw(count percentage);
-
-@EXPORT_OK = @subs;
-%EXPORT_TAGS = (  all  =>    [ @subs ]
+our @EXPORT_OK = qw(count percentage);
+our %EXPORT_TAGS = (  all  =>    [ @EXPORT_OK ]
 );
 
 sub croak {
@@ -31,12 +25,12 @@ String::Charcount - count the occurence of characters within a string.
 =head1 SYNOPSIS
 
  use String::Charcount q/:all/;
- 
+
  $string = 'The lazy brown fox jumped over the cat sitting on the fence.';
 
  $count = count(\$string);
  print 'e exists ', $$count{e}, ' times',"\n";
- 
+
  $percentage = percentage(\$string, $count);
  print 'e percentage - ', $$percentage{e}, '%',"\n";
 
@@ -79,7 +73,7 @@ all characters within a string.
 
  $percentage = percentage(\$string, $count);
  print 'e percentage - ', $$percentage{e}, '%',"\n";
- 
+
 Returns an hash ref with characters as keys and 
 percentages of occurence as values.
 
@@ -104,7 +98,7 @@ sub percentage {
 1;
 __END__
 
-=head2 EXPORT
+=head1 EXPORT
 
 C<count(), percentage()> upon request.
 
@@ -126,4 +120,3 @@ you may redistribute it and/or modify it under the same terms as Perl itself.
 Steven Schubiger
 
 =cut
-
