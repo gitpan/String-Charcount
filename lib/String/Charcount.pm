@@ -1,4 +1,4 @@
-# $Id: Charcount.pm,v 0.05 2004/01/21 14:01:13 sts Exp $
+# $Id: Charcount.pm,v 0.06 2004/01/21 17:34:49 sts Exp $
 
 package String::Charcount;
 
@@ -7,7 +7,7 @@ use base qw(Exporter);
 use strict;
 use warnings;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 our (@EXPORT_OK, %EXPORT_TAGS, @subs);
 
@@ -63,7 +63,7 @@ sub count {
       unless $$string && ref $string eq 'SCALAR';
       
     my %count;
-    map { $count{$_}++ } split //, $$string;
+    for (split '', $$string) { $count{$_}++ }
     
     return \%count;
 }
@@ -83,10 +83,12 @@ sub count_unique {
     croak q~usage: count_unique (\$string)~
       unless $$string && ref $string eq 'SCALAR'; 
     
-    my %exists;	
-    map { $exists{$_} = 1 } split //, $$string;
+    my %count;
+    for my $i (0..(length ($$string) - 1)) {
+        $count{substr $$string, $i, 1}++;
+    }
     
-    return scalar keys %exists;
+    return scalar keys %count;
 }
 
 =head2 percentage
@@ -111,8 +113,9 @@ sub percentage {
     my $perc_single = 100 / length $$string;
     
     my %percentage;
-    map { $percentage{$_} = sprintf "%2.2f", 
-      $$count{$_} * $perc_single } keys %$count;
+    for (keys %$count) {
+        $percentage{$_} = sprintf "%2.2f", $$count{$_} * $perc_single;
+    }
           
     return \%percentage;
 }
