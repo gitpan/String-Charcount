@@ -1,7 +1,7 @@
 String::Charcount
 =================
 
-Count the occurence of characters within a string.
+Count the occurence of characters within a string
 
 INSTALLATION
 
@@ -16,8 +16,7 @@ SCRIPTS
 
 bin/count.pl
 
-Interface to String::Charcount 
-that outputs counted characters.
+Outputs counted characters.
 
 LICENSE
 

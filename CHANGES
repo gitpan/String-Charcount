@@ -1,7 +1,7 @@
 Revision history for Perl extension String::Charcount.
 
 0.05 2004/01/21
- - added count_unique().
+ - Added count_unique().
 
 0.01 2004/01/15
- - initial version.
+ - Initial version.
