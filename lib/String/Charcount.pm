@@ -1,4 +1,4 @@
-# $Id: Charcount.pm,v 0.04 2004/01/15 21:55:37 sts Exp $
+# $Id: Charcount.pm,v 0.05 2004/01/21 14:01:13 sts Exp $
 
 package String::Charcount;
 
@@ -7,9 +7,15 @@ use base qw(Exporter);
 use strict;
 use warnings;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
-our @EXPORT_OK = qw(count percentage);
+our (@EXPORT_OK, %EXPORT_TAGS, @subs);
+
+@subs = qw(count count_unique percentage);
+
+@EXPORT_OK = @subs;
+%EXPORT_TAGS = (  all =>    [ @subs ],
+);
 
 sub croak {
     require Carp;
@@ -55,13 +61,32 @@ sub count {
     my $string = $_[0];
     croak q~usage: count (\$string)~
       unless $$string && ref $string eq 'SCALAR';
-
+      
     my %count;
-    foreach (split //, $$string) {
-        $count{$_}++;
-    }
+    map { $count{$_}++ } split //, $$string;
     
     return \%count;
+}
+
+=head2 count_unique
+
+Counts unique characters (case-sensitive) within a string.
+
+ $unique = count_unique(\$string);
+ 
+Returns a string.
+
+=cut
+
+sub count_unique {
+    my $string = $_[0];
+    croak q~usage: count_unique (\$string)~
+      unless $$string && ref $string eq 'SCALAR'; 
+    
+    my %exists;	
+    map { $exists{$_} = 1 } split //, $$string;
+    
+    return scalar keys %exists;
 }
 
 =head2 percentage
@@ -86,10 +111,9 @@ sub percentage {
     my $perc_single = 100 / length $$string;
     
     my %percentage;
-    foreach (keys %$count) {
-	$percentage{$_} = sprintf "%2.2f", $$count{$_} * $perc_single;
-    }
-    
+    map { $percentage{$_} = sprintf "%2.2f", 
+      $$count{$_} * $perc_single } keys %$count;
+          
     return \%percentage;
 }
 
@@ -98,6 +122,6 @@ __END__
 
 =head1 EXPORT
 
-C<count(), percentage()> are exportable.
+C<count(), count_unique(), percentage()> are exportable.
 
 =cut
