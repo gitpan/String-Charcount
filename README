@@ -16,8 +16,8 @@ SCRIPTS
 
 bin/count.pl
 
-Interface to String::Charcount that contains 
-predefined options and outputs counted characters.
+Interface to String::Charcount 
+that outputs counted characters.
 
 LICENSE
 
